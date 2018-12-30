@@ -28,7 +28,6 @@ function findAndCompare($address1, $address2) {
     // put each line in csv file
     $line = $href1 . "," . $most_similar_href . "," . round($max_perc, 2) . "%";
     fputcsv($file, explode(',',$line));
-    echo "working...";
   }
 
   // force download csv file
@@ -44,18 +43,14 @@ function getInboundLinks($homepageurl) {
   // get hrefs on homepage
   $homepage_hrefs = array();
   getLinksFromPage($homepageurl, $homepage_hrefs);
-  echo "working...";
   $homepage_hrefs = array_unique($homepage_hrefs);
-  echo "working...";
 
   // get hrefs in hrefs (depth 1)
   $depth1_hrefs = array();
   foreach ($homepage_hrefs as $href) {
     getLinksFromPage($href, $depth1_hrefs);
   }
-  echo "working...";
   $depth1_hrefs = array_unique($depth1_hrefs);
-  echo "working...";
 
   // aggregate inbound links
   foreach ($depth1_hrefs as $href) {
@@ -63,7 +58,7 @@ function getInboundLinks($homepageurl) {
       $inbound_links[] = $href;
     }
   }
-  echo "working...";
+  
   return $inbound_links;
 }
 
