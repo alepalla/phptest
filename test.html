@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+  <form action="/test.php" method="post">
+    Homepage address #1: <input id="addr1" type="text" name="address1" oninput="charsum(this)">
+    <label id="addr1label" for="addr1"></label>
+    <br>
+    Homepage address #2: <input id="addr2" type="text" name="address2" oninput="charsum(this)">
+    <label id="addr2label" for="addr2"></label>
+    <br>
+    Number of characters in both inputs: <label id="charsum">0</label>
+    <br>
+    Sum of positions in alphabet of each character contained in first input: <label id="alphasum">0</label>
+    <br>
+    <input name="submit" type="submit" value="Submit">
+  </form>
+
+  <script>
+    "use strict";
+
+    function charsum(ele, page_loaded) {
+      // display number of characters in both inputs in a label
+      document.getElementById('charsum').innerHTML = document.getElementById('addr1').value.length + document.getElementById('addr2').value.length;
+      
+      // display sum of positions in alphabet of each character contained in first input
+      if (page_loaded || ele.id === "addr1") {
+        let uppercase_input = document.getElementById('addr1').value.toUpperCase();
+        let sum = 0;
+        for(let i = 0; i < uppercase_input.length; i++) {
+          sum += (uppercase_input.charCodeAt(i) - 64);
+        }
+        document.getElementById('alphasum').innerHTML = sum;
+      }
+    }
+
+    // call once page is loaded to have correct values in inputs
+    charsum(null, true);
+
+  </script>
+</body>
+</html>
